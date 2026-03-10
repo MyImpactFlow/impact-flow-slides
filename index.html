@@ -10,12 +10,58 @@
   <link rel="icon" type="image/png" href="assets/IF-logo-color.png">
 
   <!-- Hub Dashboard Styles -->
-  <link rel="stylesheet" href="css/hub.css?v=5">
+  <link rel="stylesheet" href="css/hub.css?v=6">
 
   <!-- QR Code Library (12KB) -->
   <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
 </head>
 <body>
+
+  <!-- ============================================
+       AUTH: LOGIN OVERLAY
+       ============================================ -->
+  <div class="auth-overlay" id="auth-overlay">
+    <div class="auth-card">
+      <img src="assets/IF-logo-color.png" alt="Impact Flow" class="auth-logo">
+      <h2 class="auth-title">Impact Flow <span>Slides</span></h2>
+      <p class="auth-subtitle">Gib deine E-Mail-Adresse ein, um einen Zugangslink zu erhalten.</p>
+
+      <!-- Email Form -->
+      <form class="auth-form" id="auth-form">
+        <input type="email" class="auth-input" id="auth-email"
+               placeholder="deine@email.ch" required autocomplete="email">
+        <button type="submit" class="auth-submit" id="auth-submit">
+          Zugangslink senden
+        </button>
+      </form>
+
+      <!-- Loading -->
+      <div class="auth-loading" id="auth-loading" style="display:none;">
+        <div class="auth-spinner"></div>
+        <span>Link wird gesendet...</span>
+      </div>
+
+      <!-- Success -->
+      <div class="auth-success" id="auth-success" style="display:none;">
+        <div class="auth-success-icon">✉️</div>
+        <h3>Link gesendet!</h3>
+        <p>Prüfe dein E-Mail-Postfach und klicke auf den Zugangslink.</p>
+        <button class="auth-back-btn" id="auth-back">Andere E-Mail verwenden</button>
+      </div>
+
+      <!-- Error -->
+      <div class="auth-error" id="auth-error" style="display:none;">
+        <p class="auth-error-text" id="auth-error-text"></p>
+        <button class="auth-back-btn" id="auth-error-back">Erneut versuchen</button>
+      </div>
+
+      <!-- Validating token -->
+      <div class="auth-validating" id="auth-validating" style="display:none;">
+        <div class="auth-spinner"></div>
+        <span>Zugang wird geprüft...</span>
+      </div>
+    </div>
+  </div>
 
   <!-- ============================================
        HEADER
@@ -26,6 +72,8 @@
       <div class="hub-header-title">Impact Flow <span>Slides</span></div>
     </div>
     <div class="hub-header-right">
+      <span class="hub-user-name" id="hub-user-name" style="display:none;"></span>
+      <button class="hub-logout-btn" id="hub-logout" style="display:none;" title="Abmelden">Abmelden</button>
       <img src="assets/IF-Profil-JeanPierre-v1.png" alt="Jean Pierre Seemann" class="hub-header-avatar">
     </div>
   </header>
@@ -122,7 +170,7 @@
   </footer>
 
   <!-- Hub Dashboard Logic -->
-  <script src="js/hub.js?v=5"></script>
+  <script src="js/hub.js?v=6"></script>
 
 </body>
 </html>

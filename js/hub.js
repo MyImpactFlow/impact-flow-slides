@@ -7,7 +7,258 @@
   'use strict';
 
   // ============================================
-  // STATE
+  // AUTH CONFIGURATION
+  // ============================================
+  var AUTH_API_BASE = 'https://erfolg-n8n.peaknetworks.cloud/webhook';
+  var AUTH_ENDPOINTS = {
+    sendLink: AUTH_API_BASE + '/slides-send-magic-link',
+    validate: AUTH_API_BASE + '/slides-validate-token'
+  };
+  var SESSION_KEY = 'impactflow_slides_session';
+  var SESSION_MAX_AGE = 24 * 60 * 60 * 1000; // 24 Stunden
+
+  // ============================================
+  // AUTH STATE
+  // ============================================
+  var authState = {
+    authenticated: false,
+    email: null,
+    name: null,
+    role: null
+  };
+
+  // ============================================
+  // AUTH: APP-START (prüft Auth vor Dashboard)
+  // ============================================
+  function startApp() {
+    var token = getTokenFromURL();
+    var session = getStoredSession();
+
+    if (token) {
+      // Magic Link geklickt — Token validieren
+      showAuthState('validating');
+      validateToken(token);
+    } else if (session && !isSessionExpired(session)) {
+      // Bestehende Session — direkt Dashboard zeigen
+      onAuthSuccess(session);
+    } else {
+      // Kein Token, keine Session — Login zeigen
+      clearSession();
+      showAuthState('form');
+    }
+  }
+
+  // ============================================
+  // AUTH: TOKEN AUS URL
+  // ============================================
+  function getTokenFromURL() {
+    var params = new URLSearchParams(window.location.search);
+    return params.get('token');
+  }
+
+  function cleanTokenFromURL() {
+    var url = window.location.protocol + '//' + window.location.host + window.location.pathname;
+    window.history.replaceState({}, document.title, url);
+  }
+
+  // ============================================
+  // AUTH: SESSION STORAGE
+  // ============================================
+  function getStoredSession() {
+    try {
+      var data = sessionStorage.getItem(SESSION_KEY);
+      return data ? JSON.parse(data) : null;
+    } catch (e) { return null; }
+  }
+
+  function storeSession(data) {
+    var session = {
+      email: data.email,
+      name: data.name || '',
+      role: data.role || 'client',
+      validatedAt: Date.now()
+    };
+    sessionStorage.setItem(SESSION_KEY, JSON.stringify(session));
+    return session;
+  }
+
+  function clearSession() {
+    sessionStorage.removeItem(SESSION_KEY);
+    authState.authenticated = false;
+  }
+
+  function isSessionExpired(session) {
+    return (Date.now() - session.validatedAt) > SESSION_MAX_AGE;
+  }
+
+  // ============================================
+  // AUTH: API-AUFRUFE
+  // ============================================
+  function sendMagicLink(email) {
+    return fetch(AUTH_ENDPOINTS.sendLink, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email.trim().toLowerCase() })
+    }).then(function(res) { return res.json(); });
+  }
+
+  function validateToken(token) {
+    fetch(AUTH_ENDPOINTS.validate, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ token: token })
+    })
+    .then(function(res) { return res.json(); })
+    .then(function(data) {
+      cleanTokenFromURL();
+      if (data.valid) {
+        var session = storeSession(data);
+        onAuthSuccess(session);
+      } else {
+        showAuthState('error');
+        setErrorText(data.reason === 'expired'
+          ? 'Dieser Link ist abgelaufen. Bitte fordere einen neuen an.'
+          : 'Ungültiger Zugangslink. Bitte fordere einen neuen an.');
+      }
+    })
+    .catch(function(err) {
+      cleanTokenFromURL();
+      console.error('Token-Validierung fehlgeschlagen:', err);
+      showAuthState('error');
+      setErrorText('Verbindungsfehler. Bitte versuche es erneut.');
+    });
+  }
+
+  // ============================================
+  // AUTH: UI-STEUERUNG
+  // ============================================
+  function showAuthState(state) {
+    var overlay = document.getElementById('auth-overlay');
+    var form = document.getElementById('auth-form');
+    var loading = document.getElementById('auth-loading');
+    var success = document.getElementById('auth-success');
+    var error = document.getElementById('auth-error');
+    var validating = document.getElementById('auth-validating');
+    var subtitle = overlay ? overlay.querySelector('.auth-subtitle') : null;
+
+    if (!overlay) return;
+    overlay.classList.remove('hidden');
+
+    [form, loading, success, error, validating].forEach(function(el) {
+      if (el) el.style.display = 'none';
+    });
+    if (subtitle) subtitle.style.display = state === 'form' ? 'block' : 'none';
+
+    switch (state) {
+      case 'form':
+        if (form) form.style.display = 'flex';
+        break;
+      case 'loading':
+        if (loading) loading.style.display = 'flex';
+        break;
+      case 'success':
+        if (success) success.style.display = 'block';
+        break;
+      case 'error':
+        if (error) error.style.display = 'block';
+        break;
+      case 'validating':
+        if (validating) validating.style.display = 'flex';
+        break;
+    }
+  }
+
+  function hideAuthOverlay() {
+    var overlay = document.getElementById('auth-overlay');
+    if (overlay) overlay.classList.add('hidden');
+  }
+
+  function setErrorText(text) {
+    var el = document.getElementById('auth-error-text');
+    if (el) el.textContent = text;
+  }
+
+  // ============================================
+  // AUTH: ERFOLG → Dashboard laden
+  // ============================================
+  function onAuthSuccess(session) {
+    authState.authenticated = true;
+    authState.email = session.email;
+    authState.name = session.name;
+    authState.role = session.role;
+
+    hideAuthOverlay();
+
+    // Benutzername im Header anzeigen
+    var nameEl = document.getElementById('hub-user-name');
+    if (nameEl && session.name) {
+      nameEl.textContent = session.name;
+      nameEl.style.display = 'inline';
+    }
+
+    // Abmelden-Button anzeigen
+    var logoutBtn = document.getElementById('hub-logout');
+    if (logoutBtn) {
+      logoutBtn.style.display = 'inline-block';
+    }
+
+    // JETZT das Dashboard initialisieren
+    init();
+  }
+
+  // ============================================
+  // AUTH: EVENT LISTENERS
+  // ============================================
+  function setupAuthListeners() {
+    // Login-Formular absenden
+    var form = document.getElementById('auth-form');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var emailInput = document.getElementById('auth-email');
+        var email = emailInput ? emailInput.value.trim() : '';
+        if (!email) return;
+
+        showAuthState('loading');
+        sendMagicLink(email)
+          .then(function(data) {
+            if (data.success) {
+              showAuthState('success');
+            } else {
+              showAuthState('error');
+              setErrorText('Ein Fehler ist aufgetreten. Bitte versuche es erneut.');
+            }
+          })
+          .catch(function() {
+            showAuthState('error');
+            setErrorText('Verbindungsfehler. Bitte versuche es später erneut.');
+          });
+      });
+    }
+
+    // Zurück-Buttons
+    var backBtn = document.getElementById('auth-back');
+    if (backBtn) {
+      backBtn.addEventListener('click', function() { showAuthState('form'); });
+    }
+
+    var errorBack = document.getElementById('auth-error-back');
+    if (errorBack) {
+      errorBack.addEventListener('click', function() { showAuthState('form'); });
+    }
+
+    // Abmelden-Button
+    var logoutBtn = document.getElementById('hub-logout');
+    if (logoutBtn) {
+      logoutBtn.addEventListener('click', function() {
+        clearSession();
+        window.location.reload();
+      });
+    }
+  }
+
+  // ============================================
+  // STATE (Dashboard)
   // ============================================
   var ARCHIVE_KEY = 'impactflow_archived';
   var state = {
@@ -532,12 +783,16 @@
   }
 
   // ============================================
-  // START
+  // START — Auth zuerst, dann Dashboard
   // ============================================
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', init);
+    document.addEventListener('DOMContentLoaded', function() {
+      setupAuthListeners();
+      startApp();
+    });
   } else {
-    init();
+    setupAuthListeners();
+    startApp();
   }
 
 })();
