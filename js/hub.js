@@ -12,7 +12,7 @@
   var ARCHIVE_KEY = 'impactflow_archived';
   var state = {
     praesentationen: [],
-    filter: 'alle',
+    filter: 'aktiv',
     sortBy: 'datum-desc',
     searchQuery: ''
   };
