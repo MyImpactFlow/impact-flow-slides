@@ -1,0 +1,35 @@
+{
+  "meta": {
+    "lastUpdated": "2026-03-10"
+  },
+  "praesentationen": [
+    {
+      "id": "online-kundengewinnung",
+      "titel": "Die Wahrheit über profitable Online-Kundengewinnung",
+      "beschreibung": "Mythen entlarven. Irrwege vermeiden. Kapitän des eigenen Erfolgs werden.",
+      "datei": "praesentationen/online-kundengewinnung.html",
+      "thumbnail": "assets/thumbnails/online-kundengewinnung.png",
+      "datum": "2026-03-10",
+      "version": "1.0",
+      "slides": 25,
+      "status": "aktiv",
+      "tags": ["marketing", "strategie", "kundengewinnung"],
+      "autor": "Jean Pierre Seemann",
+      "dauer": "~30 Min."
+    },
+    {
+      "id": "impact-flow-intro",
+      "titel": "Impact Flow — Dein Weg zu mehr Freiheit",
+      "beschreibung": "Dein Weg zu mehr Freiheit, Selbstvertrauen & Unabhängigkeit. Was Impact Flow ausmacht.",
+      "datei": "praesentationen/impact-flow-intro.html",
+      "thumbnail": "assets/thumbnails/impact-flow-intro.png",
+      "datum": "2026-03-10",
+      "version": "1.0",
+      "slides": 11,
+      "status": "aktiv",
+      "tags": ["impact-flow", "einführung", "business"],
+      "autor": "Jean Pierre Seemann",
+      "dauer": "~15 Min."
+    }
+  ]
+}

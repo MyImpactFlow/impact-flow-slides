@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Impact Flow Slides — Deine Präsentationen</title>
+  <meta name="description" content="Übersicht aller Impact Flow Präsentationen. Starten, teilen, QR-Code generieren.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/IF-logo-color.png">
+
+  <!-- Hub Dashboard Styles -->
+  <link rel="stylesheet" href="css/hub.css">
+
+  <!-- QR Code Library (12KB) -->
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.min.js"></script>
+</head>
+<body>
+
+  <!-- ============================================
+       HEADER
+       ============================================ -->
+  <header class="hub-header">
+    <div class="hub-header-left">
+      <img src="assets/IF-logo-color.png" alt="Impact Flow" class="hub-header-logo">
+      <div class="hub-header-title">Impact Flow <span>Slides</span></div>
+    </div>
+    <div class="hub-header-right">
+      <img src="assets/IF-Profil-JeanPierre-v1.png" alt="Jean Pierre Seemann" class="hub-header-avatar">
+    </div>
+  </header>
+
+  <!-- ============================================
+       MAIN CONTENT
+       ============================================ -->
+  <main class="hub-main">
+
+    <!-- Title Row -->
+    <div class="hub-title-row">
+      <h1 class="hub-title">Deine Präsentationen</h1>
+      <span class="hub-count" id="hub-count">0 Präsentationen</span>
+    </div>
+
+    <!-- Search -->
+    <div class="hub-search">
+      <span class="hub-search-icon">🔍</span>
+      <input
+        type="text"
+        class="hub-search-input"
+        id="hub-search"
+        placeholder="Präsentation suchen..."
+        autocomplete="off"
+      >
+      <span class="hub-search-hint">/ zum Suchen</span>
+    </div>
+
+    <!-- Controls: Filter + Sort -->
+    <div class="hub-controls">
+      <div class="hub-filters">
+        <button class="hub-filter-btn active" data-filter="alle">
+          Alle <span class="filter-count">0</span>
+        </button>
+        <button class="hub-filter-btn" data-filter="aktiv">
+          Aktiv <span class="filter-count">0</span>
+        </button>
+        <button class="hub-filter-btn" data-filter="archiviert">
+          Archiviert <span class="filter-count">0</span>
+        </button>
+      </div>
+
+      <div class="hub-sort">
+        <label class="hub-sort-label" for="hub-sort">Sortieren:</label>
+        <select class="hub-sort-select" id="hub-sort">
+          <option value="datum-desc">Neueste zuerst</option>
+          <option value="datum-asc">Älteste zuerst</option>
+          <option value="name-az">Name A–Z</option>
+          <option value="name-za">Name Z–A</option>
+          <option value="slides-desc">Meiste Folien</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Card Grid -->
+    <div class="hub-grid" id="hub-grid">
+      <!-- Karten werden per JS gerendert -->
+    </div>
+
+    <!-- Empty State -->
+    <div class="hub-empty" id="hub-empty" style="display: none;">
+      <div class="hub-empty-icon">📑</div>
+      <p class="hub-empty-text">Keine Präsentationen vorhanden.</p>
+    </div>
+
+  </main>
+
+  <!-- ============================================
+       QR / EMBED MODAL
+       ============================================ -->
+  <div class="qr-modal" id="qr-modal">
+    <div class="qr-modal-content">
+      <h3 class="qr-modal-title">QR-Code</h3>
+      <p class="qr-modal-subtitle">Scanne den Code, um die Präsentation zu öffnen:</p>
+      <div class="qr-modal-code"></div>
+      <div class="qr-modal-url"></div>
+      <button class="qr-modal-close">Schliessen</button>
+    </div>
+  </div>
+
+  <!-- ============================================
+       TOAST NOTIFICATION
+       ============================================ -->
+  <div class="hub-toast" id="hub-toast"></div>
+
+  <!-- ============================================
+       FOOTER
+       ============================================ -->
+  <footer class="hub-footer">
+    <div class="hub-footer-inner">
+      <span>Impact Flow Slides</span>
+      <span>·</span>
+      <span>Erstellt mit reveal.js</span>
+      <img src="assets/IF-logo-color.png" alt="Impact Flow" class="hub-footer-logo">
+    </div>
+  </footer>
+
+  <!-- Hub Dashboard Logic -->
+  <script src="js/hub.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Die Wahrheit über profitable Online-Kundengewinnung — Impact Flow</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.css">
+  <link rel="stylesheet" href="../css/impact-flow.css">
+  <link rel="icon" type="image/png" href="../assets/IF-logo-color.png">
+
+  <style>
+    /* Zusätzliche Styles für diese Praesentation */
+    .slide-kapitel {
+      display: flex !important;
+      align-items: center;
+      padding: 40px 60px !important;
+      gap: 0;
+    }
+    .slide-kapitel .kapitel-text {
+      flex: 1;
+      padding-right: 40px;
+    }
+    .slide-kapitel .kapitel-visual {
+      flex: 1;
+      height: 100%;
+      min-height: 500px;
+      background-size: cover;
+      background-position: center;
+      border-radius: 0;
+      margin: -40px -60px -40px 0;
+    }
+    .slide-kapitel .kapitel-label {
+      display: inline-block;
+      font-size: 0.5em;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--if-mint-dark);
+      background: var(--if-mint-light);
+      padding: 6px 16px;
+      border-radius: var(--if-radius-full);
+      margin-bottom: var(--if-spacing-md);
+    }
+
+    /* Vier-Karten Grid */
+    .four-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-top: var(--if-spacing-md);
+    }
+    .four-cards .card {
+      background: white;
+      border-radius: var(--if-radius-md);
+      padding: 24px;
+      box-shadow: var(--if-shadow-card);
+      border-left: 4px solid var(--if-mint);
+    }
+    .four-cards .card.warning {
+      border-left-color: #e74c3c;
+    }
+    .four-cards .card h4 {
+      font-size: 0.75em;
+      margin: 0 0 8px 0;
+      color: var(--if-text-dark);
+    }
+    .four-cards .card p {
+      font-size: 0.6em;
+      margin: 0;
+      line-height: 1.5;
+    }
+
+    /* Sechs-Karten Grid */
+    .six-cards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: var(--if-spacing-sm);
+    }
+    .six-cards .card {
+      background: white;
+      border-radius: var(--if-radius-sm);
+      padding: 20px;
+      box-shadow: var(--if-shadow-card);
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .six-cards .card-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--if-mint-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1em;
+    }
+    .six-cards .card h4 {
+      font-size: 0.7em;
+      margin: 0 0 4px 0;
+    }
+    .six-cards .card p {
+      font-size: 0.55em;
+      margin: 0;
+      line-height: 1.4;
+    }
+
+    /* Pyramide CSS */
+    .pyramid {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      margin: var(--if-spacing-md) auto;
+      max-width: 700px;
+    }
+    .pyramid-level {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-weight: 600;
+      font-size: 0.65em;
+      border-radius: 8px;
+      padding: 12px;
+      box-shadow: var(--if-shadow-soft);
+    }
+    .pyramid-level:nth-child(1) { width: 30%; background: var(--if-pink-deep); }
+    .pyramid-level:nth-child(2) { width: 45%; background: var(--if-pink); }
+    .pyramid-level:nth-child(3) { width: 60%; background: var(--if-mint-dark); }
+    .pyramid-level:nth-child(4) { width: 75%; background: var(--if-mint); color: var(--if-text-dark); }
+    .pyramid-level:nth-child(5) { width: 90%; background: var(--if-grey-light); color: var(--if-text-dark); }
+
+    /* Split content helper */
+    .split-content {
+      display: flex;
+      gap: 40px;
+      margin-top: var(--if-spacing-md);
+    }
+    .split-content .left, .split-content .right { flex: 1; }
+
+    /* Callout Box */
+    .callout {
+      background: rgba(157, 211, 199, 0.15);
+      border-left: 4px solid var(--if-mint-dark);
+      padding: 16px 24px;
+      border-radius: 0 var(--if-radius-sm) var(--if-radius-sm) 0;
+      margin-top: var(--if-spacing-sm);
+    }
+    .callout.pink {
+      background: rgba(242, 156, 182, 0.12);
+      border-left-color: var(--if-pink-deep);
+    }
+    .callout p {
+      font-size: 0.7em !important;
+      margin: 0 !important;
+      font-weight: 500;
+    }
+
+    /* Numbered steps compact */
+    .steps-compact {
+      list-style: none;
+      padding: 0;
+      margin: var(--if-spacing-sm) 0;
+      counter-reset: step;
+    }
+    .steps-compact li {
+      counter-increment: step;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 0.72em;
+      color: var(--if-text-medium);
+    }
+    .steps-compact li:last-child { border-bottom: none; }
+    .steps-compact li::before {
+      content: counter(step);
+      flex-shrink: 0;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: var(--if-gradient-mint);
+      color: white;
+      font-weight: 700;
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .steps-compact li strong { color: var(--if-text-dark); }
+  </style>
+</head>
+<body>
+
+<div class="reveal">
+  <div class="slides">
+
+    <!-- ============ SLIDE 1: TITLE ============ -->
+    <section class="slide-title" data-no-logo="true" data-background-color="#2d2d2d">
+      <img src="../assets/IF-logo-white.png" alt="Impact Flow" class="logo">
+      <h1 style="font-size:2.4em;">Die Wahrheit über profitable<br>Online-Kundengewinnung</h1>
+      <div class="subtitle-line"></div>
+      <h2 style="font-size:1.1em;">Mythen entlarven. Irrwege vermeiden.<br>Kapitän des eigenen Erfolgs werden.</h2>
+    </section>
+
+    <!-- ============ SLIDE 2: EINFUEHRUNG ============ -->
+    <section class="slide-content bg-warm">
+      <span class="top-label badge badge-pink">Einführung</span>
+      <h2>Warum scheitern so viele im Online-Business?</h2>
+      <div class="divider"></div>
+      <div class="split-content">
+        <div class="left">
+          <ul data-stagger="150">
+            <li class="fragment fade-up">Dschungel aus irreführenden Versprechen</li>
+            <li class="fragment fade-up">Tausende Euro/CHF für Kurse — ohne Gesamtverständnis</li>
+            <li class="fragment fade-up">Ergebnis: Frustration, verlorene Zeit, verschwendetes Geld</li>
+          </ul>
+        </div>
+        <div class="right">
+          <div class="highlight-box fragment fade-up">
+            <h4>Die Wahrheit</h4>
+            <p>Keine schnellen Lösungen — fundierte Strategie</p>
+          </div>
+          <div class="highlight-box pink fragment fade-up">
+            <h4>Der Weg</h4>
+            <p>Vom Taktik-Sammler zum strategischen Kapitän</p>
+          </div>
+          <div class="highlight-box fragment fade-up">
+            <h4>Das Ziel</h4>
+            <p>Ein profitables, systematisches Online-Business</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 3: UEBERBLICK ============ -->
+    <section class="slide-content slide-timeline">
+      <span class="top-label badge badge-mint">Überblick</span>
+      <h2>Was du in diesem Vortrag lernst</h2>
+      <div class="divider"></div>
+      <div class="timeline" data-stagger="300">
+        <div class="timeline-item fragment fade-up">
+          <h4>Teil 1 — Die Irrwege erkennen</h4>
+          <p>Warum die meisten scheitern und welche teuren Fallen du vermeiden musst</p>
+        </div>
+        <div class="timeline-item fragment fade-up">
+          <h4>Teil 2 — Die Lösung verstehen</h4>
+          <p>Die Top Effektiv Kapitänsstrategie: Fundament, Funnel und Traffic</p>
+        </div>
+        <div class="timeline-item fragment fade-up">
+          <h4>Teil 3 — Die Umsetzung planen</h4>
+          <p>Konkrete Schritte und Werkzeuge für systematischen Aufbau</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 4: KAPITEL 1 DIVIDER ============ -->
+    <section class="slide-section" data-background-color="#fef5f7">
+      <div class="section-number">01</div>
+      <h2>Die Irrwege und Fallen</h2>
+      <p>Verstehe zuerst, was schiefläuft</p>
+    </section>
+
+    <!-- ============ SLIDE 5: HACKE-SCHAUFEL-PRINZIP ============ -->
+    <section class="slide-content">
+      <span class="top-label badge badge-pink">Achtung</span>
+      <h2>Das Hacke-Schaufel-Prinzip</h2>
+      <div class="divider"></div>
+      <p class="fragment fade-up" style="font-size:0.8em;">Im Online-Marketing läuft dasselbe Spiel wie beim Goldrausch von 1848:</p>
+      <div class="split-content">
+        <div class="left">
+          <div class="highlight-box pink fragment fade-up">
+            <h4>⛏️ Du = der Goldsucher</h4>
+            <p>Kaufen Hoffnung, Tools, Kurse, Coachings</p>
+          </div>
+          <div class="highlight-box fragment fade-up">
+            <h4>🏪 Anbieter = Schaufel-Verkäufer</h4>
+            <p>Profitieren immer — unabhängig von deinem Erfolg</p>
+          </div>
+        </div>
+        <div class="right">
+          <blockquote class="fragment fade-up" style="font-size:0.8em;">
+            Die wahren Profiteure sind nicht die Anwender, sondern die Verkäufer der Werkzeuge.
+          </blockquote>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 6: DIE 4 FALLEN ============ -->
+    <section class="slide-content">
+      <h2>Die vier grossen Fallen</h2>
+      <div class="divider"></div>
+      <div class="four-cards" data-stagger="200">
+        <div class="card warning fragment fade-up">
+          <h4>🧩 Die Teilwissenfalle</h4>
+          <p>Einzelne Puzzleteile kaufen, ohne das Gesamtbild zu kennen</p>
+        </div>
+        <div class="card warning fragment fade-up">
+          <h4>🔇 Lückenkommunikation</h4>
+          <p>Anfang und Ende gezeigt — der schwierige Mittelteil verschwiegen</p>
+        </div>
+        <div class="card warning fragment fade-up">
+          <h4>🔧 Die Facharbeiterfalle</h4>
+          <p>In operative Details abtauchen statt strategisch zu führen</p>
+        </div>
+        <div class="card warning fragment fade-up">
+          <h4>⏱️ Der Druckmechanismus</h4>
+          <p>Countdown-Timer und künstliche Verknappung erzwingen Fehlkäufe</p>
+        </div>
+      </div>
+      <div class="callout pink fragment fade-up" style="margin-top: 20px;">
+        <p>💡 <strong>Merken:</strong> Psychotrigger sind kein Ersatz für fundierte Strategie.</p>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 7: WARNSIGNALE ============ -->
+    <section class="slide-two-col slide-content">
+      <h2>Schütze dich selbst</h2>
+      <div class="divider"></div>
+      <div class="columns">
+        <div class="col fragment slide-left">
+          <h4 class="text-pink" style="font-size:0.8em;">⚠️ Warnsignale erkennen</h4>
+          <ul style="font-size:0.7em;">
+            <li>Schneller Reichtum ohne Arbeit</li>
+            <li>Countdown-Timer für "zeitlich begrenzte" Angebote</li>
+            <li>Testimonials ohne überprüfbare Ergebnisse</li>
+            <li>Fokus auf Werkzeug statt Strategie</li>
+          </ul>
+        </div>
+        <div class="col fragment slide-right">
+          <h4 class="text-mint" style="font-size:0.8em;">✅ Deine Gegenstrategie</h4>
+          <ul style="font-size:0.7em;">
+            <li>Verstand einsetzen, bevor du kaufst</li>
+            <li>Nach dem Gesamtbild fragen</li>
+            <li>Prüfen, ob es zum Geschäftsmodell passt</li>
+            <li>Künstliche Dringlichkeit ignorieren</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 8: GESCHWINDIGKEIT ============ -->
+    <section class="slide-content bg-warm">
+      <span class="top-label badge badge-mint">Der Hebel</span>
+      <h2>Problemlösungsgeschwindigkeit = Erfolg</h2>
+      <div class="divider"></div>
+      <div class="three-col-inline" style="display:flex; gap:24px; margin-top:20px;">
+        <div class="highlight-box fragment fade-up" style="flex:1; text-align:center;">
+          <h4>🐢 Langsam</h4>
+          <p style="font-size:0.65em;">Viel Zeit, wenige Probleme gelöst, hohes Risiko aufzugeben</p>
+        </div>
+        <div class="highlight-box fragment fade-up" style="flex:1; text-align:center;">
+          <h4>📈 Realistisch</h4>
+          <p style="font-size:0.65em;">Stufenweiser Fortschritt mit Plateaus und Rückschlägen</p>
+        </div>
+        <div class="highlight-box pink fragment fade-up" style="flex:1; text-align:center;">
+          <h4>🚀 Beschleunigt</h4>
+          <p style="font-size:0.65em;">Externe Hebel (Coaches, Mentoren) vervielfachen die Geschwindigkeit</p>
+        </div>
+      </div>
+      <div class="callout fragment fade-up" style="margin-top:20px;">
+        <p>💡 Ein erfahrener Mentor kann deine Problemlösungsgeschwindigkeit um das Mehrfache steigern.</p>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 9: KAPITEL 2 DIVIDER ============ -->
+    <section class="slide-section" data-background-color="#fef5f7">
+      <div class="section-number">02</div>
+      <h2>Die Kapitänsstrategie</h2>
+      <p>Vom Taktik-Sammler zum strategischen Kapitän</p>
+    </section>
+
+    <!-- ============ SLIDE 10: KAPITAEN SEIN ============ -->
+    <section class="slide-quote">
+      <div class="quote-mark">"</div>
+      <blockquote class="fragment fade-up">
+        Der Kapitän ist nicht zwangsläufig der, der sein Schiff selbst baut — aber er muss wissen, aus welchen Teilen es besteht.
+      </blockquote>
+      <div class="fragment fade-up" style="margin-top:40px; display:flex; gap:40px; justify-content:center; font-size:0.6em;">
+        <div style="text-align:center;">
+          <strong style="color:var(--if-pink-deep); font-size:1.2em;">01</strong><br>
+          System verstehen
+        </div>
+        <div style="text-align:center;">
+          <strong style="color:var(--if-pink-deep); font-size:1.2em;">02</strong><br>
+          Überblick behalten
+        </div>
+        <div style="text-align:center;">
+          <strong style="color:var(--if-pink-deep); font-size:1.2em;">03</strong><br>
+          Team führen
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 11: STRATEGIE STATS ============ -->
+    <section class="slide-stats" data-background-color="#2d2d2d">
+      <h2>Die Top Effektiv Kapitänsstrategie</h2>
+      <div class="stats-grid">
+        <div class="stat fragment scale-in">
+          <div class="stat-number" data-count-to="80" data-count-suffix="%">0%</div>
+          <div class="stat-label">Fundament</div>
+        </div>
+        <div class="stat fragment scale-in">
+          <div class="stat-number" data-count-to="15" data-count-suffix="%">0%</div>
+          <div class="stat-label">Funnel</div>
+        </div>
+        <div class="stat fragment scale-in">
+          <div class="stat-number" data-count-to="5" data-count-suffix="%">0%</div>
+          <div class="stat-label">Traffic</div>
+        </div>
+      </div>
+      <p class="fragment fade-up" style="color: var(--if-grey-light); font-size: 0.65em; max-width: 600px; margin: 30px auto 0; text-align:center;">
+        Basiert auf dem Engpass-Prinzip: Eine Kette ist nur so stark wie ihr schwächstes Glied.
+      </p>
+    </section>
+
+    <!-- ============ SLIDE 12: KERNELEMENT 1 — FUNDAMENT ============ -->
+    <section class="slide-content">
+      <span class="top-label badge badge-pink">Kernelement 1</span>
+      <h2>Das Fundament: 80% deines Erfolgs</h2>
+      <div class="divider"></div>
+      <div class="slide-three-col" style="padding:0 !important;">
+        <div class="cards" data-stagger="200" style="margin-top:16px;">
+          <div class="card fragment fade-up">
+            <div class="card-icon">🎯</div>
+            <h3>Wunschkunde (Avatar)</h3>
+            <p>Wen willst du erreichen? Wer ist dein perfekter Kunde mit Kaufkraft?</p>
+          </div>
+          <div class="card fragment fade-up">
+            <div class="card-icon">💬</div>
+            <h3>Magnetische Botschaft</h3>
+            <p>Was sagst du, um diese Person sofort zu fesseln und zu überzeugen?</p>
+          </div>
+          <div class="card fragment fade-up">
+            <div class="card-icon">🎁</div>
+            <h3>Perfektes Angebot</h3>
+            <p>Welche Lösung bietest du an, die dein Kunde wirklich will?</p>
+          </div>
+        </div>
+      </div>
+      <div class="callout pink fragment fade-up" style="margin-top:16px;">
+        <p>Ohne solides Fundament sind alle Marketing-Massnahmen wie Bauen auf Sand.</p>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 13: 5 VARIABLEN ZIELMARKT ============ -->
+    <section class="slide-content slide-icon-list bg-warm">
+      <h2>Die 5 Variablen für den perfekten Zielmarkt</h2>
+      <div class="divider"></div>
+      <div class="icon-items" data-stagger="150">
+        <div class="icon-item fragment fade-up">
+          <div class="icon pink">❤️</div>
+          <div>
+            <h4>Leidenschaft</h4>
+            <p>Wofür brennst du? Was treibt dich mit Herzblut an?</p>
+          </div>
+        </div>
+        <div class="icon-item fragment fade-up">
+          <div class="icon mint">🔧</div>
+          <div>
+            <h4>Probleme</h4>
+            <p>Wessen Probleme kannst du besser, schneller oder günstiger lösen?</p>
+          </div>
+        </div>
+        <div class="icon-item fragment fade-up">
+          <div class="icon pink">💰</div>
+          <div>
+            <h4>Profit</h4>
+            <p>Hat die Zielgruppe Kaufkraft? Kann sie sich dein Angebot leisten?</p>
+          </div>
+        </div>
+        <div class="icon-item fragment fade-up">
+          <div class="icon mint">👥</div>
+          <div>
+            <h4>Präsenz</h4>
+            <p>Wie gross ist der Markt? Kannst du dich als Experte positionieren?</p>
+          </div>
+        </div>
+        <div class="icon-item fragment fade-up">
+          <div class="icon pink">🛤️</div>
+          <div>
+            <h4>Pfad</h4>
+            <p>Wie und wo erreichst du deine Zielgruppe online?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 14: EMOTIONEN + BOTSCHAFT ============ -->
+    <section class="slide-content">
+      <span class="top-label badge badge-mint">Kernbotschaft formulieren</span>
+      <h2>Emotionen treiben alle Kaufentscheidungen</h2>
+      <div class="divider"></div>
+      <div class="split-content">
+        <div class="left">
+          <div class="highlight-box pink fragment fade-up">
+            <h4>🔴 Schmerzvermeidung</h4>
+            <p>Weg vom unangenehmen Gefühl, der Frustration, der Angst</p>
+          </div>
+          <div class="highlight-box fragment fade-up">
+            <h4>🟢 Freude erlangen</h4>
+            <p>Hin zum guten Gefühl, zum Stolz, zur Sicherheit</p>
+          </div>
+        </div>
+        <div class="right">
+          <h4 style="font-size:0.8em;" class="fragment fade-up">4 Schritte zur magnetischen Botschaft:</h4>
+          <ol style="font-size:0.7em;" data-stagger="150">
+            <li class="fragment fade-up"><strong>Ziele sammeln</strong> — Was will dein Kunde?</li>
+            <li class="fragment fade-up"><strong>Messbar machen</strong> — Konkreter Wert + Zeitraum</li>
+            <li class="fragment fade-up"><strong>Hauptmotivation finden</strong> — Das eine grösste Verlangen</li>
+            <li class="fragment fade-up"><strong>Mit Emotion verbinden</strong> — Gefühl + Schmerzvermeidung</li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 15: 3 SAEULEN ============ -->
+    <section class="slide-content bg-warm">
+      <h2>Die drei Säulen des Geschäfts</h2>
+      <div class="divider"></div>
+      <div class="slide-three-col" style="padding:0 !important;">
+        <div class="cards" data-stagger="200" style="margin-top:16px;">
+          <div class="card fragment fade-up" style="border-top: 4px solid var(--if-pink);">
+            <div class="card-icon">⭐</div>
+            <h3>1. Produkt</h3>
+            <p>Wichtigste Säule — löst echte Probleme und erleichtert Leben</p>
+          </div>
+          <div class="card fragment fade-up" style="border-top: 4px solid var(--if-mint);">
+            <div class="card-icon">📢</div>
+            <h3>2. Marketing</h3>
+            <p>Die richtige Botschaft, zur richtigen Zeit, an die richtige Person</p>
+          </div>
+          <div class="card fragment fade-up" style="border-top: 4px solid var(--if-grey-light);">
+            <div class="card-icon">💻</div>
+            <h3>3. Technologie</h3>
+            <p>Software und Tools, um Botschaft und Produkt zu liefern</p>
+          </div>
+        </div>
+      </div>
+      <div class="callout fragment fade-up" style="margin-top:16px;">
+        <p>⚠️ <strong>Der Fehler der meisten:</strong> Den Fokus umgekehrt setzen — zuerst Technik, dann Marketing, zuletzt das Produkt.</p>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 16: KERNELEMENT 2 — FUNNEL ============ -->
+    <section class="slide-content">
+      <span class="top-label badge badge-pink">Kernelement 2</span>
+      <h2>Der Funnel: Von Besucher zu Kunde</h2>
+      <div class="divider"></div>
+      <div class="timeline" data-stagger="250" style="margin-top:16px;">
+        <div class="timeline-item fragment fade-up">
+          <h4>Schritt 1 — Lead-Magnet</h4>
+          <p>Kontaktgewinnung über Landing-Page mit starkem Anreiz</p>
+        </div>
+        <div class="timeline-item fragment fade-up">
+          <h4>Schritt 2 — Autoritätsverstärker</h4>
+          <p>Wertvoller Inhalt, der Expertise beweist und Vertrauen aufbaut</p>
+        </div>
+        <div class="timeline-item fragment fade-up">
+          <h4>Schritt 3 — Conversion-Event</h4>
+          <p>Finale Handlung: Kauf, Webinar-Anmeldung oder Beratungsgespräch</p>
+        </div>
+      </div>
+      <div class="callout fragment fade-up" style="margin-top:16px;">
+        <p>💡 <strong>Für Anfänger:</strong> Starte mit einem einfachen 3-Schritte-Funnel. Keine komplexen Systeme!</p>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 17: LEAD-MAGNET ============ -->
+    <section class="slide-content bg-warm">
+      <h2>Der perfekte Lead-Magnet</h2>
+      <div class="divider"></div>
+      <div class="four-cards" data-stagger="200">
+        <div class="card fragment fade-up" style="border-left-color: var(--if-pink); text-align:center;">
+          <h4>1️⃣ Fesselnder Titel</h4>
+          <p>Kann Stunden oder Tage Entwicklung benötigen</p>
+        </div>
+        <div class="card fragment fade-up" style="border-left-color: var(--if-mint); text-align:center;">
+          <h4>2️⃣ Schnell konsumierbar</h4>
+          <p>Keine 50-Seiten E-Books — Checklisten, Webinare, kurze Guides</p>
+        </div>
+        <div class="card fragment fade-up" style="border-left-color: var(--if-pink); text-align:center;">
+          <h4>3️⃣ Professionelles Design</h4>
+          <p>Signalisiert Professionalität und erhöht die Lead-Anzahl</p>
+        </div>
+        <div class="card fragment fade-up" style="border-left-color: var(--if-mint); text-align:center;">
+          <h4>4️⃣ Klare Call-to-Action</h4>
+          <p>Muss zum nächsten Schritt führen und Zusammenhang schaffen</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 18: KAEFERPYRAMIDE ============ -->
+    <section class="slide-content" style="text-align:center;">
+      <h2>Die Käuferpyramide nach Chet Holmes</h2>
+      <p class="fragment fade-up" style="font-size:0.7em; color:var(--if-text-light);">Warum die meisten 97% des Marktes ignorieren</p>
+      <div class="pyramid" data-stagger="200">
+        <div class="pyramid-level fragment fade-up">3% — Wollen jetzt kaufen</div>
+        <div class="pyramid-level fragment fade-up">6-7% — Offen für das Thema</div>
+        <div class="pyramid-level fragment fade-up">30% — Denken nicht darüber nach</div>
+        <div class="pyramid-level fragment fade-up">30% — Glauben, nicht interessiert zu sein</div>
+        <div class="pyramid-level fragment fade-up">30% — Definitiv nicht interessiert</div>
+      </div>
+      <div class="callout fragment fade-up" style="max-width:600px; margin:16px auto 0;">
+        <p>💡 67% des Marktes könnten durch richtige Kommunikation erreicht werden!</p>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 19: KERNELEMENT 3 — TRAFFIC ============ -->
+    <section class="slide-content">
+      <span class="top-label badge badge-mint">Kernelement 3</span>
+      <h2>Traffic: Gezielte Besucherströme</h2>
+      <div class="divider"></div>
+      <div class="split-content">
+        <div class="left">
+          <div class="callout pink fragment fade-up">
+            <p>⚠️ Traffic ist nur <strong>5% des Erfolgs.</strong> Ohne solides Fundament (80%) und funktionierenden Funnel (15%) verpufft jede Investition.</p>
+          </div>
+          <p class="fragment fade-up" style="font-size:0.75em; margin-top:16px;">Erst wenn Fundament und Funnel stehen, macht Traffic-Generierung Sinn.</p>
+        </div>
+        <div class="right">
+          <h4 style="font-size:0.8em;" class="fragment fade-up">Traffic-Quellen:</h4>
+          <ul style="font-size:0.7em;" data-stagger="100">
+            <li class="fragment fade-up">Facebook & Instagram Ads</li>
+            <li class="fragment fade-up">Google Ads (Search + Display)</li>
+            <li class="fragment fade-up">YouTube Ads</li>
+            <li class="fragment fade-up">LinkedIn Ads für B2B</li>
+            <li class="fragment fade-up">Organische Social Media Präsenz</li>
+            <li class="fragment fade-up">SEO und Content Marketing</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 20: UNTERNEHMENSLEVEL ============ -->
+    <section class="slide-content bg-warm">
+      <h2>Die 4 Unternehmenslevel</h2>
+      <p class="fragment fade-up" style="font-size:0.7em; color:var(--if-text-light);">Keine Ebene kann übersprungen werden</p>
+      <div class="four-cards" data-stagger="200" style="margin-top:16px;">
+        <div class="card fragment fade-up" style="border-left-color: #e74c3c;">
+          <h4>Level 1 — Der Kampf</h4>
+          <p>Alles manuell, kein System, Stress, knappes Geld</p>
+        </div>
+        <div class="card fragment fade-up" style="border-left-color: var(--if-pink);">
+          <h4>Level 2 — Der Durchbruch</h4>
+          <p>Gute Umsätze, aber alles hängt am Unternehmer</p>
+        </div>
+        <div class="card fragment fade-up" style="border-left-color: var(--if-mint);">
+          <h4>Level 3 — Der Traum</h4>
+          <p>Kapitän mit Team, profitabler Funnel läuft</p>
+        </div>
+        <div class="card fragment fade-up" style="border-left-color: var(--if-mint-dark);">
+          <h4>Level 4 — Die Freiheit</h4>
+          <p>Firma läuft autonom, etablierte Systeme, Verkauf möglich</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 21: KAPITEL 3 DIVIDER ============ -->
+    <section class="slide-section" data-background-color="#fef5f7">
+      <div class="section-number">03</div>
+      <h2>Deine nächsten Schritte</h2>
+      <p>Die Umsetzung planen und Fehler vermeiden</p>
+    </section>
+
+    <!-- ============ SLIDE 22: 5 SCHRITTE ============ -->
+    <section class="slide-content">
+      <span class="top-label badge badge-mint">Fahrplan</span>
+      <h2>Fokussiere dich auf das Wesentliche</h2>
+      <div class="divider"></div>
+      <ul class="steps-compact" data-stagger="200">
+        <li class="fragment fade-up"><strong>Taktik-Sammeln stoppen</strong> — Du hast genug Puzzleteile. Es fehlt das Gesamtbild.</li>
+        <li class="fragment fade-up"><strong>System verstehen</strong> — Fundament, Funnel, Traffic. In dieser Reihenfolge.</li>
+        <li class="fragment fade-up"><strong>Fundament bauen</strong> — 80% des Erfolgs: Avatar, Botschaft, Angebot definieren.</li>
+        <li class="fragment fade-up"><strong>Einfachen Funnel implementieren</strong> — 3-Schritte-Funnel. Erst wenn er funktioniert, erweitern.</li>
+        <li class="fragment fade-up"><strong>Dann erst: Traffic</strong> — Erst wenn alles steht, investieren und skalieren.</li>
+      </ul>
+    </section>
+
+    <!-- ============ SLIDE 23: TOEDLICHE FEHLER ============ -->
+    <section class="slide-content bg-warm">
+      <h2>Vermeide diese Fehler</h2>
+      <div class="divider"></div>
+      <div class="six-cards" data-stagger="150">
+        <div class="card fragment fade-up">
+          <div class="card-icon" style="background:#fce4ec;">❌</div>
+          <div>
+            <h4>Fundament überspringen</h4>
+            <p>Direkt mit Funnel starten ohne klare Positionierung</p>
+          </div>
+        </div>
+        <div class="card fragment fade-up">
+          <div class="card-icon" style="background:#fce4ec;">❌</div>
+          <div>
+            <h4>Komplexe Funnels am Anfang</h4>
+            <p>Evergreen-Funnel bauen, bevor die Basics stehen</p>
+          </div>
+        </div>
+        <div class="card fragment fade-up">
+          <div class="card-icon" style="background:#fce4ec;">❌</div>
+          <div>
+            <h4>Traffic ohne Conversion</h4>
+            <p>Tausende Euro/CHF in Ads, wenn der Funnel nicht konvertiert</p>
+          </div>
+        </div>
+        <div class="card fragment fade-up">
+          <div class="card-icon" style="background:#fce4ec;">❌</div>
+          <div>
+            <h4>Taktik-Hopping</h4>
+            <p>Ständig neue Tools kaufen statt ein System durchziehen</p>
+          </div>
+        </div>
+        <div class="card fragment fade-up">
+          <div class="card-icon" style="background:#fce4ec;">❌</div>
+          <div>
+            <h4>In der Facharbeiterfalle</h4>
+            <p>In Details verlieren ohne strategische Perspektive</p>
+          </div>
+        </div>
+        <div class="card fragment fade-up">
+          <div class="card-icon" style="background:#fce4ec;">❌</div>
+          <div>
+            <h4>Lückenkommunikation glauben</h4>
+            <p>Auf "schnell reich"-Versprechen hereinfallen</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 24: ZUSAMMENFASSUNG ============ -->
+    <section class="slide-content">
+      <h2>Die Kernerkenntnisse</h2>
+      <div class="divider"></div>
+      <div class="six-cards" data-stagger="150">
+        <div class="card fragment fade-up">
+          <div class="card-icon" style="background:var(--if-pink-light);">⚠️</div>
+          <div>
+            <h4>Gefahren kennen</h4>
+            <p>Hacke-Schaufel-Prinzip, Teilwissenfalle, Lückenkommunikation</p>
+          </div>
+        </div>
+        <div class="card fragment fade-up">
+          <div class="card-icon">🏗️</div>
+          <div>
+            <h4>Fundament legen</h4>
+            <p>80% des Erfolgs: Avatar, Botschaft, Angebot mit visueller Roadmap</p>
+          </div>
+        </div>
+        <div class="card fragment fade-up">
+          <div class="card-icon" style="background:var(--if-pink-light);">🔄</div>
+          <div>
+            <h4>Funnel bauen</h4>
+            <p>15% des Erfolgs: Lead-Magnet, Autoritätsverstärker, Conversion</p>
+          </div>
+        </div>
+        <div class="card fragment fade-up">
+          <div class="card-icon">📈</div>
+          <div>
+            <h4>Traffic generieren</h4>
+            <p>5% des Erfolgs: Erst wenn alles steht, dann skalieren</p>
+          </div>
+        </div>
+        <div class="card fragment fade-up">
+          <div class="card-icon" style="background:var(--if-pink-light);">⚡</div>
+          <div>
+            <h4>Geschwindigkeit erhöhen</h4>
+            <p>Externe Hebel nutzen, Problemlösungsgeschwindigkeit steigern</p>
+          </div>
+        </div>
+        <div class="card fragment fade-up">
+          <div class="card-icon">🧭</div>
+          <div>
+            <h4>Kapitän werden</h4>
+            <p>Gesamtbild verstehen, strategisch führen, nicht in Details verlieren</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SLIDE 25: CTA ============ -->
+    <section class="slide-cta" data-no-logo="true" data-background-color="#2d2d2d">
+      <h2>Werde zum Kapitän<br>deines Unternehmens</h2>
+      <p>
+        Du hast jetzt das Gesamtbild. Jetzt liegt es an dir,<br>die richtigen Schritte zu gehen.
+      </p>
+      <div class="cta-row" style="display:flex;align-items:center;gap:40px;justify-content:center;margin-top:24px;">
+        <a href="https://myimpactflow.ch/eTermin" target="_blank" class="cta-button">
+          Erstgespräch buchen
+        </a>
+        <div class="qr-block" style="text-align:center;">
+          <div style="background:white;padding:12px;border-radius:16px;display:inline-block;box-shadow:0 8px 32px rgba(0,0,0,0.3);">
+            <img src="../assets/qr-etermin.png" alt="QR-Code: Erstgespräch buchen" style="width:120px;height:120px;display:block;">
+          </div>
+          <p style="font-size:0.45em;color:var(--if-grey-light);margin-top:8px;">QR-Code scannen</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/dist/reveal.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/notes/notes.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/reveal.js@5.1.0/plugin/markdown/markdown.js"></script>
+<script src="../js/impact-flow.js"></script>
+
+<script>
+  Reveal.initialize({
+    width: 1280,
+    height: 720,
+    margin: 0,
+    minScale: 0.2,
+    maxScale: 2.0,
+    hash: true,
+    history: true,
+    keyboard: true,
+    touch: true,
+    transition: 'slide',
+    transitionSpeed: 'default',
+    backgroundTransition: 'fade',
+    progress: true,
+    slideNumber: true,
+    center: false,
+    controls: true,
+    controlsLayout: 'bottom-right',
+    autoAnimateEasing: 'ease-out',
+    autoAnimateDuration: 0.8,
+    pdfMaxPagesPerSlide: 1,
+    pdfSeparateFragments: false,
+    plugins: [RevealNotes, RevealMarkdown]
+  });
+</script>
+
+</body>
+</html>
