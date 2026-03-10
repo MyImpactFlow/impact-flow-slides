@@ -347,22 +347,27 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 12px;
+  gap: 10px;
   background: var(--if-gradient-hero);
-  padding: 24px;
+  padding: 20px 24px 16px;
+  box-sizing: border-box;
 }
 
 .hub-card-thumb-fallback img {
-  width: 100px;
-  opacity: 0.85;
+  flex: 0 1 auto;
+  max-height: 55%;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.9;
 }
 
 .hub-card-thumb-fallback span {
   color: rgba(255, 255, 255, 0.6);
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 600;
   text-align: center;
   line-height: 1.3;
+  flex-shrink: 0;
 }
 
 /* NEU Badge auf Thumbnail */
