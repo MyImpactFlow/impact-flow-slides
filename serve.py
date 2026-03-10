@@ -2,18 +2,18 @@
 """
 Impact Flow Presentation Server
 ================================
-Startet einen lokalen Webserver fuer Praesentationen.
+Startet einen lokalen Webserver für Präsentationen.
 
 Verwendung:
     python3 serve.py                    → Startet auf Port 8080
     python3 serve.py 3000               → Startet auf Port 3000
-    python3 serve.py --open             → Startet und oeffnet Browser
-    python3 serve.py meine-praesi.html  → Startet spezifische Praesentation
+    python3 serve.py --open             → Startet und öffnet Browser
+    python3 serve.py meine-praesi.html  → Startet spezifische Präsentation
 
 Features:
-    - Lokaler Server fuer Praesentationen
+    - Lokaler Server für Präsentationen
     - Link-Sharing im lokalen Netzwerk (zeigt IP-Adresse)
-    - Auto-Reload bei Datei-Aenderungen
+    - Auto-Reload bei Datei-Änderungen
     - PDF-Export Hinweis
 
 Autor: Impact Flow / Claude Code
@@ -33,7 +33,7 @@ SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 def get_local_ip():
-    """Ermittelt die lokale IP-Adresse fuer Netzwerk-Sharing."""
+    """Ermittelt die lokale IP-Adresse für Netzwerk-Sharing."""
     try:
         s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
         s.connect(("8.8.8.8", 80))
@@ -65,7 +65,7 @@ def print_banner(port, filename="index.html"):
     print("  ║  → / ←          Slides navigieren                ║")
     print("  ║  F              Vollbild                          ║")
     print("  ║  S              Speaker Notes                     ║")
-    print("  ║  Esc            Uebersicht                        ║")
+    print("  ║  Esc            Übersicht                        ║")
     print("  ║  Ctrl+E         PDF Export                        ║")
     print("  ║                                                  ║")
     print("  ║  PDF Export:                                      ║")
@@ -88,7 +88,7 @@ class QuietHandler(http.server.SimpleHTTPRequestHandler):
             print(f"  ⚠️  {args[0]} → {args[1]}")
 
     def end_headers(self):
-        # CORS Headers fuer lokale Entwicklung
+        # CORS Headers für lokale Entwicklung
         self.send_header('Access-Control-Allow-Origin', '*')
         self.send_header('Cache-Control', 'no-cache, no-store, must-revalidate')
         super().end_headers()
@@ -114,10 +114,10 @@ def main():
     # In das Skript-Verzeichnis wechseln
     os.chdir(SCRIPT_DIR)
 
-    # Pruefen ob die Datei existiert
+    # Prüfen ob die Datei existiert
     if not os.path.exists(target_file):
         print(f"\n  ❌ Datei nicht gefunden: {target_file}")
-        print("  Verfuegbare Praesentationen:")
+        print("  Verfügbare Präsentationen:")
         for f in os.listdir("."):
             if f.endswith(".html"):
                 print(f"     • {f}")
@@ -128,7 +128,7 @@ def main():
 
     try:
         with socketserver.TCPServer(("", port), handler) as httpd:
-            # Signal Handler fuer sauberes Beenden
+            # Signal Handler für sauberes Beenden
             def shutdown(sig, frame):
                 print("\n\n  👋 Server beendet. Bis bald!\n")
                 httpd.shutdown()
@@ -138,7 +138,7 @@ def main():
 
             print_banner(port, target_file)
 
-            # Browser oeffnen wenn gewuenscht
+            # Browser öffnen wenn gewünscht
             if open_browser:
                 webbrowser.open(f"http://localhost:{port}/{target_file}")
 

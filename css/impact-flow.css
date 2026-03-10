@@ -1015,7 +1015,7 @@
 }
 
 /* ============================================
-   RESPONSIVE (fuer kleinere Screens)
+   RESPONSIVE (für kleinere Screens)
    ============================================ */
 @media screen and (max-width: 768px) {
   .reveal h1 { font-size: 2em; }

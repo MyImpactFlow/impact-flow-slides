@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 """
-Impact Flow Praesentation Generator
+Impact Flow Präsentation Generator
 =====================================
-Generiert eine vollstaendige reveal.js Praesentation aus einer JSON-Konfiguration.
+Generiert eine vollständige reveal.js Präsentation aus einer JSON-Konfiguration.
 
 Verwendung:
     python3 erstelle-praesentation.py config.json
@@ -186,7 +186,7 @@ def build_slide(slide_data):
         author = slide_data.get("author", "")
         author_html = ""
         if author:
-            author_html = f'<p class="fragment fade-up" style="margin-top: 2em; font-size: 0.7em;">Eine Praesentation von <strong style="color: var(--if-pink);">{author}</strong></p>'
+            author_html = f'<p class="fragment fade-up" style="margin-top: 2em; font-size: 0.7em;">Eine Präsentation von <strong style="color: var(--if-pink);">{author}</strong></p>'
         return template.format(
             title=slide_data.get("title", ""),
             subtitle=slide_data.get("subtitle", ""),
@@ -333,7 +333,7 @@ def build_slide(slide_data):
             title=slide_data.get("title", "Bereit?"),
             text=slide_data.get("text", ""),
             url=slide_data.get("url", "https://myimpactflow.ch/eTermin"),
-            button_text=slide_data.get("button", "Erstgespraech buchen")
+            button_text=slide_data.get("button", "Erstgespräch buchen")
         )
 
     elif slide_type == "text_only":
@@ -434,12 +434,12 @@ HTML_TEMPLATE = """<!DOCTYPE html>
 # ============================================
 
 def generate(config_path, output_path=None):
-    """Generiert eine Praesentation aus einer JSON-Konfig."""
+    """Generiert eine Präsentation aus einer JSON-Konfig."""
 
     with open(config_path, "r", encoding="utf-8") as f:
         config = json.load(f)
 
-    title = config.get("title", "Praesentation")
+    title = config.get("title", "Präsentation")
     transition = config.get("transition", "slide")
     slides = config.get("slides", [])
 
@@ -464,7 +464,7 @@ def generate(config_path, output_path=None):
         base_name = os.path.splitext(os.path.basename(config_path))[0]
         output_path = os.path.join(SCRIPT_DIR, "praesentationen", f"{base_name}.html")
 
-    # Ordner erstellen falls noetig
+    # Ordner erstellen falls nötig
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     # Pfade anpassen wenn in Unterordner
@@ -477,10 +477,10 @@ def generate(config_path, output_path=None):
     with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
 
-    print(f"\n  ✅ Praesentation erstellt: {output_path}")
+    print(f"\n  ✅ Präsentation erstellt: {output_path}")
     print(f"  📊 {len(slides)} Slides generiert")
     print(f"  🌸 Theme: Impact Flow")
-    print(f"  🎬 Uebergang: {transition}")
+    print(f"  🎬 Übergang: {transition}")
     print(f"\n  Starten mit: python3 serve.py --open")
     print()
 
@@ -497,12 +497,12 @@ def main():
     if sys.argv[1] == "--beispiel" or sys.argv[1] == "--example":
         # Beispiel-JSON erstellen
         example = {
-            "title": "Meine Praesentation",
+            "title": "Meine Präsentation",
             "transition": "slide",
             "slides": [
                 {
                     "type": "title",
-                    "title": "Praesentation Titel",
+                    "title": "Präsentation Titel",
                     "subtitle": "Untertitel hier",
                     "author": "Jean Pierre Seemann"
                 },
@@ -515,7 +515,7 @@ def main():
                 {
                     "type": "three_cards",
                     "title": "Drei Punkte",
-                    "label": "Ueberblick",
+                    "label": "Überblick",
                     "background": "bg-warm",
                     "cards": [
                         {"icon": "💡", "title": "Punkt 1", "text": "Beschreibung"},
@@ -525,13 +525,13 @@ def main():
                 },
                 {
                     "type": "quote",
-                    "quote": "Ein inspirierendes Zitat hier einfuegen.",
+                    "quote": "Ein inspirierendes Zitat hier einfügen.",
                     "author": "Name",
                     "role": "Rolle"
                 },
                 {
                     "type": "cta",
-                    "title": "Bereit fuer den naechsten Schritt?",
+                    "title": "Bereit für den nächsten Schritt?",
                     "text": "Lass uns sprechen.",
                     "button": "Jetzt buchen",
                     "url": "https://myimpactflow.ch/eTermin"
@@ -544,7 +544,7 @@ def main():
             json.dump(example, f, indent=2, ensure_ascii=False)
 
         print(f"\n  ✅ Beispiel-Konfiguration erstellt: {example_path}")
-        print(f"  Praesentation generieren: python3 erstelle-praesentation.py beispiel-config.json\n")
+        print(f"  Präsentation generieren: python3 erstelle-praesentation.py beispiel-config.json\n")
         return
 
     config_path = sys.argv[1]
