@@ -353,8 +353,8 @@ body {
 }
 
 .hub-card-thumb-fallback img {
-  width: 48px;
-  opacity: 0.5;
+  width: 100px;
+  opacity: 0.85;
 }
 
 .hub-card-thumb-fallback span {
