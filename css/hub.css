@@ -576,6 +576,12 @@ body {
   text-align: center;
 }
 
+.hub-card-share-divider {
+  height: 1px;
+  background: #eee;
+  margin: 4px 0;
+}
+
 /* ============================================
    EMPTY STATE
    ============================================ */

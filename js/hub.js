@@ -9,12 +9,56 @@
   // ============================================
   // STATE
   // ============================================
+  var ARCHIVE_KEY = 'impactflow_archived';
   var state = {
     praesentationen: [],
     filter: 'alle',
     sortBy: 'datum-desc',
     searchQuery: ''
   };
+
+  // Archiv-Status aus localStorage laden
+  function getArchivedIds() {
+    try {
+      return JSON.parse(localStorage.getItem(ARCHIVE_KEY) || '[]');
+    } catch (e) { return []; }
+  }
+
+  function setArchivedIds(ids) {
+    localStorage.setItem(ARCHIVE_KEY, JSON.stringify(ids));
+  }
+
+  function applyArchiveStatus() {
+    var archived = getArchivedIds();
+    state.praesentationen.forEach(function(p) {
+      if (archived.indexOf(p.id) > -1) {
+        p.status = 'archiviert';
+      } else if (p.status === 'archiviert' && archived.indexOf(p.id) === -1) {
+        // Wurde aus JSON als archiviert geladen, aber nicht in localStorage → JSON gewinnt
+      }
+    });
+  }
+
+  function toggleArchive(id) {
+    var archived = getArchivedIds();
+    var idx = archived.indexOf(id);
+    var p = state.praesentationen.find(function(p) { return p.id === id; });
+    if (!p) return;
+
+    if (idx > -1) {
+      // Wiederherstellen
+      archived.splice(idx, 1);
+      p.status = 'aktiv';
+      showToast('✅ Präsentation wiederhergestellt');
+    } else {
+      // Archivieren
+      archived.push(id);
+      p.status = 'archiviert';
+      showToast('📦 Präsentation archiviert');
+    }
+    setArchivedIds(archived);
+    render();
+  }
 
   // ============================================
   // INITIALIZATION
@@ -24,6 +68,7 @@
       .then(function(res) { return res.json(); })
       .then(function(data) {
         state.praesentationen = data.praesentationen || [];
+        applyArchiveStatus();
         render();
         setupEventListeners();
         setupKeyboard();
@@ -135,6 +180,10 @@
               '</button>' +
               '<button class="hub-card-share-item" data-action="embed" data-url="' + escapeHtml(p.datei) + '" data-titel="' + escapeHtml(p.titel) + '">' +
                 '<span class="share-icon">&lt;/&gt;</span> Einbetten' +
+              '</button>' +
+              '<div class="hub-card-share-divider"></div>' +
+              '<button class="hub-card-share-item" data-action="archive" data-id="' + escapeHtml(p.id) + '">' +
+                '<span class="share-icon">' + (isArchived ? '↩️' : '📦') + '</span> ' + (isArchived ? 'Wiederherstellen' : 'Archivieren') +
               '</button>' +
             '</div>' +
           '</div>' +
@@ -290,6 +339,9 @@
             break;
           case 'embed':
             showEmbed(url, titel);
+            break;
+          case 'archive':
+            toggleArchive(this.dataset.id);
             break;
         }
       });
