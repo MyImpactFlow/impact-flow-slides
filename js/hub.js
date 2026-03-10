@@ -90,14 +90,14 @@
 
     // Thumbnail oder Fallback
     var thumbHtml = '<div class="hub-card-thumb-fallback">' +
-      '<img src="assets/IF-logo-white.png" alt="">' +
+      '<img src="assets/IF-logo-color.png" alt="">' +
       '<span>' + escapeHtml(p.titel) + '</span>' +
       '</div>';
 
     if (p.thumbnail) {
       thumbHtml = '<img src="' + escapeHtml(p.thumbnail) + '" alt="' + escapeHtml(p.titel) + '" ' +
         'onerror="this.parentNode.innerHTML=\'<div class=hub-card-thumb-fallback>' +
-        '<img src=assets/IF-logo-white.png alt=><span>' + escapeHtml(p.titel).replace(/'/g, "\\'") + '</span></div>\'">';
+        '<img src=assets/IF-logo-color.png alt=><span>' + escapeHtml(p.titel).replace(/'/g, "\\'") + '</span></div>\'">';
     }
 
     return '<div class="hub-card' + (isArchived ? ' archived' : '') + '" data-id="' + escapeHtml(p.id) + '">' +
